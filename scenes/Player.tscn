@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://7102ha2rioa4"]
+
+[ext_resource type="Texture2D" uid="uid://ca1l87uyj60ht" path="res://assets/graphics/Player/player_stand.png" id="1_qu4a1"]
+[ext_resource type="Texture2D" uid="uid://dikrj6jbnoke6" path="res://assets/graphics/Player/jump.png" id="2_70d11"]
+[ext_resource type="Texture2D" uid="uid://r7i1ojoyxi0w" path="res://assets/graphics/Player/player_walk_1.png" id="3_cw2d6"]
+[ext_resource type="Texture2D" uid="uid://bjtvj01gkg2pd" path="res://assets/graphics/Player/player_walk_2.png" id="4_khinc"]
+[ext_resource type="AudioStream" uid="uid://bgmhbbxehhl2p" path="res://assets/audio/jump.mp3" id="5_bruh7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6eyey"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qu4a1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_70d11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_qu4a1")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qu4a1")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_cw2d6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_khinc")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qu4a1"]
+radius = 23.0
+height = 58.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qu4a1"]
+size = Vector2(5.333, 0)
+
+[node name="Player" type="CharacterBody2D" unique_id=1195159384]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=659261292]
+position = Vector2(576, 324)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1622556075]
+position = Vector2(84, 448)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_6eyey")
+animation = &"walk"
+frame_progress = 0.61923724
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1376592267]
+light_mask = 2
+position = Vector2(92, 449)
+shape = SubResource("CapsuleShape2D_qu4a1")
+
+[node name="GroundCollisionShape2D" type="CollisionShape2D" parent="." unique_id=1594215505]
+position = Vector2(84, 479.5)
+scale = Vector2(0.75, 0.75)
+shape = SubResource("RectangleShape2D_qu4a1")
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=2078485635]
+stream = ExtResource("5_bruh7")

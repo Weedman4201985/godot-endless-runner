@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://dn84uflw7iqcg"]
+
+[ext_resource type="Script" uid="uid://b23nr1odg3vvb" path="res://scripts/Main.gd" id="1_o6xl0"]
+[ext_resource type="AudioStream" uid="uid://u67a3d5owycf" path="res://assets/audio/music.wav" id="1_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://d31rtb5k188ii" path="res://assets/graphics/Sky.png" id="1_tefeu"]
+[ext_resource type="Texture2D" uid="uid://btvrmxgxnoedb" path="res://assets/graphics/ground.png" id="2_o6xl0"]
+[ext_resource type="AudioStream" uid="uid://b568osmijhvjw" path="res://assets/audio/game_over.mp3" id="3_jlsqs"]
+[ext_resource type="FontFile" uid="uid://d3uymbkenqe4y" path="res://assets/font/Pixeltype.ttf" id="3_nxtc6"]
+[ext_resource type="PackedScene" uid="uid://7102ha2rioa4" path="res://scenes/Player.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://cnfkwefr05cdd" path="res://scripts/player.gd" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bu8xfs6s3ryhe" path="res://scenes/GameOverScreen.tscn" id="9_q8u5g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
+size = Vector2(1151, 168)
+
+[node name="Main" type="Node2D" unique_id=1470086548]
+script = ExtResource("1_o6xl0")
+
+[node name="bg" type="Parallax2D" parent="." unique_id=468895479]
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(800, 0)
+
+[node name="bg" type="Sprite2D" parent="bg" unique_id=948212805]
+position = Vector2(576, 254.49997)
+scale = Vector2(1.4399999, 2.6233332)
+texture = ExtResource("1_tefeu")
+
+[node name="ground" type="Parallax2D" parent="." unique_id=1204637125]
+repeat_size = Vector2(800, 0)
+
+[node name="GroundCollider" type="StaticBody2D" parent="ground" unique_id=951453798]
+light_mask = 2
+position = Vector2(1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground/GroundCollider" unique_id=105605477]
+position = Vector2(575.5, 564)
+shape = SubResource("RectangleShape2D_jyhfs")
+one_way_collision = true
+
+[node name="ground" type="Sprite2D" parent="ground" unique_id=541553707]
+position = Vector2(576, 564)
+scale = Vector2(1.44, 1)
+texture = ExtResource("2_o6xl0")
+
+[node name="Player" parent="." unique_id=610382324 instance=ExtResource("3_sugp2")]
+script = ExtResource("4_jyhfs")
+run_speed = 500.0
+
+[node name="ObstacleTimer" type="Timer" parent="." unique_id=1637023518]
+wait_time = 1.5
+autostart = true
+
+[node name="ScoreLayer" type="CanvasLayer" parent="." unique_id=171865356]
+
+[node name="lblScoreLbl" type="RichTextLabel" parent="ScoreLayer" unique_id=441796370]
+offset_left = 21.0
+offset_right = 487.0
+offset_bottom = 109.0
+theme_override_colors/default_color = Color(1, 0.34312904, 0.9920693, 1)
+theme_override_fonts/normal_font = ExtResource("3_nxtc6")
+theme_override_font_sizes/normal_font_size = 70
+text = "SCORE:"
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="lblScore" type="Label" parent="ScoreLayer/lblScoreLbl" unique_id=1006795039]
+layout_mode = 0
+offset_left = 153.0
+offset_right = 382.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(1, 0.34117648, 0.99215686, 1)
+theme_override_fonts/font = ExtResource("3_nxtc6")
+theme_override_font_sizes/font_size = 70
+vertical_alignment = 1
+autowrap_trim_flags = 0
+justification_flags = 0
+
+[node name="lblTimeLbl" type="RichTextLabel" parent="ScoreLayer" unique_id=253711738]
+offset_left = 808.0
+offset_right = 1152.0
+offset_bottom = 109.0
+theme_override_colors/default_color = Color(0.14117648, 1, 0.3254902, 1)
+theme_override_fonts/normal_font = ExtResource("3_nxtc6")
+theme_override_font_sizes/normal_font_size = 70
+text = "TIME:"
+vertical_alignment = 1
+
+[node name="lblTime" type="Label" parent="ScoreLayer/lblTimeLbl" unique_id=915753671]
+layout_mode = 0
+offset_left = 122.0
+offset_right = 343.0
+offset_bottom = 109.0
+theme_override_colors/font_color = Color(0.14117648, 1, 0.3254902, 1)
+theme_override_fonts/font = ExtResource("3_nxtc6")
+theme_override_font_sizes/font_size = 70
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1356077117]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="Music" unique_id=1066074690]
+stream = ExtResource("1_tbgi4")
+
+[node name="GameOverMusic" type="AudioStreamPlayer" parent="Music" unique_id=289338644]
+stream = ExtResource("3_jlsqs")
+
+[node name="GameOverScreen" parent="." unique_id=1934968578 instance=ExtResource("9_q8u5g")]
+visible = false
+
+[connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]

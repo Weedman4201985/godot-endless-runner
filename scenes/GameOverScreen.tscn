@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://bu8xfs6s3ryhe"]
+
+[ext_resource type="Script" uid="uid://bfhqgf5jv4iou" path="res://scripts/GameOverScreen.gd" id="1_1tm0t"]
+[ext_resource type="Texture2D" uid="uid://ca1l87uyj60ht" path="res://assets/graphics/Player/player_stand.png" id="2_1tm0t"]
+[ext_resource type="FontFile" uid="uid://d3uymbkenqe4y" path="res://assets/font/Pixeltype.ttf" id="3_1tm0t"]
+
+[node name="GameOverScreen" type="CanvasLayer" unique_id=1934968578]
+script = ExtResource("1_1tm0t")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1644487490]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.54509807, 0.8117647, 0.7294118, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=714375286]
+position = Vector2(562, 295)
+scale = Vector2(3.5588236, 3.2142856)
+texture = ExtResource("2_1tm0t")
+
+[node name="lblScoreTitle" type="Label" parent="." unique_id=1648830327]
+offset_left = 357.0
+offset_top = 494.0
+offset_right = 657.0
+offset_bottom = 544.0
+theme_override_fonts/font = ExtResource("3_1tm0t")
+theme_override_font_sizes/font_size = 80
+text = "YOUR SCORE:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lblScore" type="Label" parent="lblScoreTitle" unique_id=392670421]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 306.0
+offset_top = -25.0
+offset_right = 476.0
+offset_bottom = 25.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_1tm0t")
+theme_override_font_sizes/font_size = 80
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lblTitle" type="Label" parent="." unique_id=1986278674]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -140.0
+offset_top = 39.0
+offset_right = 110.0
+offset_bottom = 89.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_1tm0t")
+theme_override_font_sizes/font_size = 80
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lblMessage" type="Label" parent="." unique_id=1699859932]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -55.0
+offset_right = 300.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_1tm0t")
+theme_override_font_sizes/font_size = 80
+text = "PRESS SPACE TO RESTART"
+horizontal_alignment = 1
+vertical_alignment = 1

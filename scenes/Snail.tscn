@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://i3kvkqfcc70n"]
+
+[ext_resource type="Script" uid="uid://dpukqfvmu6u8s" path="res://scripts/obstacles.gd" id="1_2wu2h"]
+[ext_resource type="Texture2D" uid="uid://m342iq8teooq" path="res://assets/graphics/snail/snail1.png" id="2_kfcxn"]
+[ext_resource type="Texture2D" uid="uid://dw180ho3r1lfh" path="res://assets/graphics/snail/snail2.png" id="3_kttc3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_er827"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kfcxn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kttc3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wu2h"]
+size = Vector2(48.6, 24.3)
+
+[node name="Snail" type="Area2D" unique_id=610194962]
+script = ExtResource("1_2wu2h")
+speed = 25.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1586448771]
+position = Vector2(677, 327)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_er827")
+animation = &"walk"
+frame_progress = 0.2509048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1479727393]
+position = Vector2(671, 328.3)
+shape = SubResource("RectangleShape2D_2wu2h")

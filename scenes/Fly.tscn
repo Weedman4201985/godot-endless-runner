@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://1m5v7sg7aw4f"]
+
+[ext_resource type="Script" uid="uid://dpukqfvmu6u8s" path="res://scripts/obstacles.gd" id="1_iwmli"]
+[ext_resource type="Texture2D" uid="uid://baeuqlk7tpi66" path="res://assets/graphics/Fly/Fly1.png" id="2_8s5am"]
+[ext_resource type="Texture2D" uid="uid://cdgcsaqk6oaop" path="res://assets/graphics/Fly/Fly2.png" id="3_oct1g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sgyng"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8s5am")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oct1g")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 20.0
+}]
+
+[node name="Fly" type="Area2D" unique_id=176009453]
+script = ExtResource("1_iwmli")
+speed = 500.0
+animation_name = "fly"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=464478657]
+position = Vector2(526, 215)
+scale = Vector2(0.45, 0.45)
+sprite_frames = SubResource("SpriteFrames_sgyng")
+animation = &"fly"
+frame_progress = 0.9625634
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=1213195561]
+light_mask = 2
+position = Vector2(525, 216)
+rotation = 1.5707964
+polygon = PackedVector2Array(-4.9999847, 7, -4.9999847, 5, -5.9999847, 5, -5.9999847, 3, -7.9999847, 3, -8, -5, -6, -5, -6, -7, 6, -7, 6, -5, 8, -5, 8.000015, 5, 6.0000153, 5, 6.0000153, 7)
